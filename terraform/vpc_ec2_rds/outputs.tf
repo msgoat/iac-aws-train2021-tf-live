@@ -22,7 +22,7 @@ output "data_subnet_ids" {
   description = "Unique identifiers of all datastore subnets"
   value = module.network.app_subnet_ids
 }
-
+/*
 output "web_instance_id" {
   description = "Unique identifier of the web server instance"
   value = module.web_server.ec2_instance_id
@@ -43,19 +43,29 @@ output "app_instance_name" {
   value = module.app_server.ec2_instance_name
 }
 
-/*
 output "postgres_id" {
   description = "unique identifier of the postgres service"
-  value = aws_db_instance.postgres.id
+  value = module.postgres.db_instance_id
 }
 
 output "postgres_host" {
   description = "hostname of the postgres service"
-  value = aws_db_instance.postgres.address
+  value = module.postgres.db_host_name
 }
 
 output "postgres_port" {
   description = "port number of the postgres service"
-  value = aws_db_instance.postgres.port
+  value = module.postgres.db_port_number
+}
+
+output "postgres_admin_user" {
+  description = "User name of the postgres admin user"
+  value = module.postgres.db_user_name
+}
+
+output "postgres_admin_password" {
+  description = "Password of the postgres admin password"
+  value = module.postgres.db_user_password
+  sensitive = true
 }
 */
