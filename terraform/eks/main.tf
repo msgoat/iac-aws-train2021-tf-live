@@ -28,17 +28,15 @@ locals {
   }
 }
 
-# create the VPC to host all EC2 instances and RDS Postgres instances
+# create an EKS cluster plus Application Load Balancer
 module "cluster" {
-  source = "../../../iac-aws-containers-tf-module/modules/eks/cluster-all-in-one"
+  source = "github.com/msgoat/iac-aws-containers-tf-module/modules/eks/cluster-all-in-one"
   region_name = var.region_name
   network_cidr = var.network_cidr
   inbound_traffic_cidrs = var.inbound_traffic_cidrs
-  aws_profile_name = "theism-eu-west-1-cloudtrain"
   common_tags = local.main_common_tags
-  kube_config_file_dir = "./target/kube"
   kubernetes_cluster_name = "train2021"
-  solution_name = "iac2021"
+  solution_name = "cloudtrain"
   solution_stage = "dev"
-  solution_fqn = "iac2021-dev"
+  solution_fqn = "cloudtrain-dev"
 }
